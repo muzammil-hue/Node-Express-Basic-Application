@@ -2,11 +2,13 @@ name: build-deploy-pipeline
 on:
  push:
   branches: [main]
+
 jobs:
   my-job:
     runs-on: ubuntu-latest
     env:
      SSH_PRIVATE_KEY: ${{ secrets.ssh }}
+
     steps:
       - name: checked code
         uses: actions/checkout@v3
@@ -37,9 +39,3 @@ jobs:
          npm install
          npm run build
          EOF
-
-
-         run: npm run build 
-
- 
-        run: npm run build 
