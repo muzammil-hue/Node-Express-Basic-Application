@@ -32,11 +32,25 @@ jobs:
          uname -a
          echo "This is SSH machine"
          cd /opt
-         sudo git clone https://github.com/muzammil-hue/Node-Express-Basic-Application.git
-         cd Node-Express-Basic-Application
+         
+         # Clone or pull repo
+         if [ -d "Node-Express-Basic-Application" ]; then
+           cd Node-Express-Basic-Application
+           sudo git pull
+         else
+           sudo git clone https://github.com/muzammil-hue/Node-Express-Basic-Application.git
+           cd Node-Express-Basic-Application
+         fi
+
+         # Fix permissions for npm
+         sudo chown -R $(whoami) .
+
+         # Install Node.js and npm if not already installed
          sudo apt update
          sudo apt install nodejs npm -y
-         npm install 
+
+         # Install dependencies and build
+         npm install
          npm run build
          EOF
          npm run build
