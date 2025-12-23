@@ -26,12 +26,19 @@ jobs:
       - name: connect to vm
         run: ssh -i ~/.ssh/id_rsa azureuser@20.48.186.93 
 
-      - name: Display the message
-        run: echo "successfully connected to vm"
-      - name: clone the project
-        run: git clone https://github.com/muzammil-hue/Node-Express-Basic-Application.git
-      - name: install dependencies
-        run: npm install
+      - name: connect to vm
+        run: |
+         ssh -i ~/.ssh/id_rsa azureuser@20.48.186.93 << 'EOF'
+         echo "It is connect to SSH VM"
+         uname -a
+         echo "This is SSH machine"
+         cd /opt
+         sudo git clone https://github.com/muzammil-hue/Node-Express-Basic-Application.git
+         ls /opt
+         sudo cd Node-Express-Basic-Application/
+         sudo apt install npm -y
+         ls
+         EOF
       - name: build the project
         run: npm run build 
 
