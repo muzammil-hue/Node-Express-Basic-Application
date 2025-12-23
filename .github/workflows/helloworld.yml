@@ -36,6 +36,8 @@ jobs:
          cd Node-Express-Basic-Application
          sudo apt update
          sudo apt install nodejs npm -y
-         npm install
+         npm install 
+         npm run build
+         EOF
          npm run build
          EOF
