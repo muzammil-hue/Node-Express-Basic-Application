@@ -31,12 +31,14 @@ jobs:
          echo "This is SSH machine"
          cd /opt
          sudo git clone https://github.com/muzammil-hue/Node-Express-Basic-Application.git
-         ls /opt
+         ls /opt 
          sudo cd Node-Express-Basic-Application/
          sudo apt install npm -y
          ls
          EOF
 
+
+         run: npm run build 
+
  
         run: npm run build 
-
