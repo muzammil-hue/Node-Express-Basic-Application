@@ -36,8 +36,6 @@ jobs:
          
       - name: install dependencies
         run: npm install
-      - name: build the project
-        run: npm run build
 
 
 
