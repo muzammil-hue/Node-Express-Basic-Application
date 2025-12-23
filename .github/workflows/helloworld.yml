@@ -22,9 +22,7 @@ jobs:
 
       - name: add host to known hosts
         run: ssh-keyscan -H 20.48.186.93 >> ~/.ssh/known_hosts
-
-      - name: connect to vm
-        run: ssh -i ~/.ssh/id_rsa azureuser@20.48.186.93 
+        
       - name: connect to vm
         run: |
          ssh -i ~/.ssh/id_rsa azureuser@20.48.186.93 << 'EOF'
