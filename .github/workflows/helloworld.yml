@@ -2,40 +2,34 @@ name: build-deploy-pipeline
 on:
  push:
   branches: [main]
-
 jobs:
   my-job:
     runs-on: ubuntu-latest
     env:
      SSH_PRIVATE_KEY: ${{ secrets.ssh }}
-
     steps:
       - name: checked code
         uses: actions/checkout@v3
-
+ 
       - name: create directory
         run: mkdir -p ~/.ssh
-
+ 
       - name: Move the private key into the directory
         run: echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-
+ 
       - name: assign the permission to this directory
         run: chmod 600 ~/.ssh/id_rsa
-
+ 
       - name: add host to known hosts
         run: ssh-keyscan -H 20.48.186.93 >> ~/.ssh/known_hosts
+ 
       - name: connect to vm
         run: |
          ssh -i ~/.ssh/id_rsa azureuser@20.48.186.93 << 'EOF'
          echo "It is connect to SSH VM"
          uname -a
-         echo "This is SSH machine"
+         echo -e "\e[31mLogged in to VM\e[0m"
          cd /opt
-         sudo git clone https://github.com/muzammil-hue/Node-Express-Basic-Application.git
-         ls /opt
-         sudo cd Node-Express-Basic-Application/
-         sudo apt install npm -y
-         ls
          EOF
       # - name: clone the project
       #   run: git clone https://github.com/muzammil-hue/Node-Express-Basic-Application.git
@@ -43,6 +37,3 @@ jobs:
       #   run: npm install
       # - name: build the project
       #   run: npm run build
-        
-      
-         EOF
