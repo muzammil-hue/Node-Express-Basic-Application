@@ -38,7 +38,7 @@ jobs:
         run: git pull origin main
 
       - name: push the code
-        run: git push origin main
+        run: sudo git push origin main
          
       - name: install dependencies
         run: npm install
