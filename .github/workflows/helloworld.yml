@@ -37,12 +37,12 @@ jobs:
       - name: pull the code
         run: git pull origin main
 
-      - name: push the code
-        run: git push origin main
-
         env:
           Github_username: ${{secrets.username}}
           Github_password: ${{secrets.password}}
+
+      - name: push the code
+        run: git push origin main
          
       - name: install dependencies
         run: npm install
