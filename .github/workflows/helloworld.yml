@@ -7,8 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
      SSH_PRIVATE_KEY: ${{ secrets.ssh }}
-     Github_username: ${{secrets.username}}
-     Github_password: ${{secrets.password}}
     steps:
       - name: checked code
         uses: actions/checkout@v3
@@ -41,6 +39,10 @@ jobs:
 
       - name: push the code
         run: git push origin main
+
+        env:
+          Github_username: ${{secrets.username}}
+          Github_password: ${{secrets.password}}
          
       - name: install dependencies
         run: npm install
