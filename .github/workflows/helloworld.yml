@@ -40,5 +40,5 @@ jobs:
       - name: start the project
         run: npm run
       - name: test the application
-        run: curl localhost:3000/hello
+        run: curl localhost:3000
      
