@@ -10,8 +10,6 @@ jobs:
     steps:
       - name: checked code
         uses: actions/checkout@v3
-        with:
-              token: ${{secrets.sgithub.token}}
  
       - name: create directory
         run: mkdir -p ~/.ssh
@@ -39,14 +37,12 @@ jobs:
       - name: pull the code
         run: git pull origin main
         
-      - name: push the code
-        run: git push origin main
          
       - name: install dependencies
         run: npm install
         
       - name: start the project
-        run: npm run
+        run: npm start
         
    
      
