@@ -33,6 +33,12 @@ jobs:
          EOF
       - name: clone the project
         run: git clone https://github.com/muzammil-hue/Node-Express-Basic-Application.git
+
+      - name: check the github branch
+        run: sudo git branch main
+
+      - name: pull the code
+        run: git pull origin main
          
       - name: install dependencies
         run: npm install
