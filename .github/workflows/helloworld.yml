@@ -38,4 +38,4 @@ jobs:
         run: npm install
         
       - name: start the project
-        run: npm run start
+        run: node index.js
