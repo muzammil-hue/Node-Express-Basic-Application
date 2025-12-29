@@ -38,7 +38,7 @@ jobs:
         run: npm install
         
       - name: start the project
-        run: node index.js
+        run: npm run
         
    
      
