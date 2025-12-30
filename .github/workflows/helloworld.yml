@@ -49,15 +49,15 @@ jobs:
       - name: install dependencies
         run: |
          ssh -i ~/.ssh/id_rsa azureuser@20.48.186.93 << 'EOF'
-         npm install -g pm2
+         sudo  npm install -g pm2
          EOF
 
         
       - name: start the project
         run: |
          ssh -i ~/.ssh/id_rsa azureuser@20.48.186.93 << 'EOF'
-         pm2 start index.js
-         pm2 list
+         sudo pm2 start index.js
+         sudo pm2 list
          EOF
         
    
