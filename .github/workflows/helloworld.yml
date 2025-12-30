@@ -27,14 +27,15 @@ jobs:
       - name: clone the project
         run: |
          ssh -i ~/.ssh/id_rsa azureuser@20.48.186.93 << 'EOF'
-         cd /opt
+         sudo rm -rf /opt/Node-Express-Basic-Application
+         sudo cd /opt
          git clone https://github.com/muzammil-hue/Node-Express-Basic-Application.git
          EOF
          
       - name: pull the code
         run: |
          ssh -i ~/.ssh/id_rsa azureuser@20.48.186.93 << 'EOF'
-         cd /opt/Node-Express-Basic-Application
+         sudo cd /opt/Node-Express-Basic-Application
          git pull origin main
          EOF
         
@@ -42,7 +43,7 @@ jobs:
       - name: install dependencies
         run: |
          ssh -i ~/.ssh/id_rsa azureuser@20.48.186.93 << 'EOF'
-         cd /opt/Node-Express-Basic-Application
+         sudo cd /opt/Node-Express-Basic-Application
          sudo  npm install -g pm2
          EOF
 
@@ -50,7 +51,7 @@ jobs:
       - name: start the project
         run: |
          ssh -i ~/.ssh/id_rsa azureuser@20.48.186.93 << 'EOF'
-         cd /opt/Node-Express-Basic-Application
+         sudo cd /opt/Node-Express-Basic-Application
          sudo pm2 start index.js
          sudo pm2 list
          EOF
