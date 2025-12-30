@@ -54,6 +54,12 @@ jobs:
          sudo pm2 start index.js
          sudo pm2 list
          EOF
-        
+
+      - name: test the project
+        run: |
+          ssh -i ~/.ssh/id_rsa azureuser@20.48.186.93 << 'EOF'
+          curl localhost:3000
+          curl localhost:3000/hello
+          EOF
    
      
