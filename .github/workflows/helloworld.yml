@@ -23,25 +23,18 @@ jobs:
       - name: add host to known hosts
         run: ssh-keyscan -H 20.48.186.93 >> ~/.ssh/known_hosts
  
-      - name: connect to vm
-        run: |
-         ssh -i ~/.ssh/id_rsa azureuser@20.48.186.93 << 'EOF'
-         echo "It is connect to SSH VM"
-         uname -a
-         echo -e "\e[31mLogged in to VM\e[0m"
-         cd /opt
-         EOF
          
       - name: clone the project
         run: |
          ssh -i ~/.ssh/id_rsa azureuser@20.48.186.93 << 'EOF'
+         cd /opt
          git clone https://github.com/muzammil-hue/Node-Express-Basic-Application.git
          EOF
          
       - name: pull the code
         run: |
          ssh -i ~/.ssh/id_rsa azureuser@20.48.186.93 << 'EOF'
-         cd Node-Express-Basic-Application
+         cd /opt/Node-Express-Basic-Application
          git pull origin main
          EOF
         
@@ -49,6 +42,7 @@ jobs:
       - name: install dependencies
         run: |
          ssh -i ~/.ssh/id_rsa azureuser@20.48.186.93 << 'EOF'
+         cd /opt/Node-Express-Basic-Application
          sudo  npm install -g pm2
          EOF
 
@@ -56,6 +50,7 @@ jobs:
       - name: start the project
         run: |
          ssh -i ~/.ssh/id_rsa azureuser@20.48.186.93 << 'EOF'
+         cd /opt/Node-Express-Basic-Application
          sudo pm2 start index.js
          sudo pm2 list
          EOF
