@@ -31,18 +31,34 @@ jobs:
          echo -e "\e[31mLogged in to VM\e[0m"
          cd /opt
          EOF
+         
       - name: clone the project
-        run: git clone https://github.com/muzammil-hue/Node-Express-Basic-Application.git
-
+        run: |
+         ssh -i ~/.ssh/id_rsa azureuser@20.48.186.93 << 'EOF'
+         git clone https://github.com/muzammil-hue/Node-Express-Basic-Application.git
+         EOF
+         
       - name: pull the code
-        run: git pull origin main
+        run: |
+         ssh -i ~/.ssh/id_rsa azureuser@20.48.186.93 << 'EOF'
+         cd Node-Express-Basic-Application
+         git pull origin main
+         EOF
         
          
       - name: install dependencies
-        run: npm install
+        run: |
+         ssh -i ~/.ssh/id_rsa azureuser@20.48.186.93 << 'EOF'
+         npm install -g pm2
+         EOF
+
         
       - name: start the project
-        run: npm start
+        run: |
+         ssh -i ~/.ssh/id_rsa azureuser@20.48.186.93 << 'EOF'
+         pm2 start index.js
+         pm2 list
+         EOF
         
    
      
