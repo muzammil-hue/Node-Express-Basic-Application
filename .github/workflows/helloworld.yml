@@ -35,6 +35,7 @@ jobs:
       - name: clone the project
         run: |
          ssh -i ~/.ssh/id_rsa azureuser@20.48.186.93 << 'EOF'
+         sudo rm -rf Node-Express-Basic-Application.git
          git clone https://github.com/muzammil-hue/Node-Express-Basic-Application.git
          EOF
          
